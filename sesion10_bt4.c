@@ -10,11 +10,13 @@ int main(){
 	      	if(arr[j]<arr[min]){
 			min = j;
 			}	
-		}
+	   }
+	   if(min!=i){
 		int temp = arr[min];
 		arr[min]= arr[i];
 		arr[i]= temp;
 		}
+   }
 		printf("mang cua ban sau khi sap xep la : \n");
 		for(int i=0;i<n;i++){
 		printf("%d \n", arr[i]);	
