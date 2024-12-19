@@ -37,30 +37,34 @@ int main(){
 		}
 		printf("\n");
 	}
-	
-	printf("\nduong cheo phu da sap xep: \n");
-	for ( int k =0; k < n; k++){
-		for ( int i = 0 ; i < n-1 ; i++){
-			for ( int j = 0 ; j < n-1-i ; j++){
-				if ( j + i == n-1){
-					
-					int temp = arr[i][j];
-					arr[i][j] = arr[i+1][j+1];
-					arr[i+1][j+1] = temp;
-				}
-			}
-		}
-	}
-	
-	for ( int i = 0 ; i < n ; i++){
-		for ( int j = 0 ; j < n ; j++){
-			if ( j + i == n-1 ){
-				printf ( "\t%d", arr[i][j] );
-			}else{
-				printf("\t");
-			}
-		}
-		printf("\n");
-	}
-	return 0;
+	int diag[n];
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        diag[k++] = arr[i][n - i - 1];
+    }
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (diag[i] > diag[j]) {
+                int temp = diag[i];
+                diag[i] = diag[j];
+                diag[j] = temp;
+            }
+        }
+    }
+    k = 0;
+    for (int i = 0; i < n; i++) {
+        arr[i][n - i - 1] = diag[k++];
+    }
+    printf("\nDuong cheo phu da sap xep: \n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (j + i == n - 1) { 
+                printf("\t%d", arr[i][j]);
+            } else {
+                printf("\t");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
 }
